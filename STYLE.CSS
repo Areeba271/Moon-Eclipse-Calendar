@@ -1,415 +1,64 @@
-/* style.css */
-
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background: #05071a;
+  background-image: radial-gradient(circle at center, #1a1f3a 0%, #05071a 100%);
+  color: #e6e6ff;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #0a0e2a, #1a1f3a, #2a2f4a);
-  color: #e6e6ff;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-/* Container */
-.container {
-  max-width: 1200px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+.container { max-width: 1100px; margin: auto; }
+header { text-align: center; margin-bottom: 30px; }
+h1 { font-size: 2.5rem; color: #a8c0ff; text-shadow: 0 0 10px rgba(168,192,255,0.5); }
 
-/* Header */
-header {
-  text-align: center;
-  margin-bottom: 10px;
-}
+.content { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+section { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; backdrop-filter: blur(10px); }
 
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-  background: linear-gradient(90deg, #a8c0ff, #f9f7fe);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 15px rgba(168, 192, 255, 0.3);
-}
+/* --- MOON ANIMATION ENGINE --- */
+.moon-container { width: 280px; height: 280px; margin: 20px auto; position: relative; }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #b0b5ff;
-  margin-bottom: 20px;
-}
-
-/* Main content layout */
-.content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-}
-
-/* Calendar section */
-.calendar-section {
-  flex: 1;
-  min-width: 320px;
-  background: rgba(20, 25, 50, 0.7);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(100, 120, 255, 0.1);
-}
-
-/* Moon display section */
-.moon-display-section {
-  flex: 1;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(20, 25, 50, 0.7);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(100, 120, 255, 0.1);
-}
-
-/* Date selector */
-.date-selector {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.date-group {
-  flex: 1;
-  min-width: 200px;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  color: #a8c0ff;
-  font-weight: 600;
-}
-
-select,
-input {
-  width: 100%;
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 1px solid rgba(100, 120, 255, 0.3);
-  background: rgba(10, 15, 40, 0.8);
-  color: #e6e6ff;
-  font-size: 1rem;
-  outline: none;
-  transition: all 0.3s;
-}
-
-select:focus,
-input:focus {
-  border-color: #6a89ff;
-  box-shadow: 0 0 0 2px rgba(106, 137, 255, 0.3);
-}
-
-/* Current date button */
-.current-date-btn {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(90deg, #4a6fff, #6a89ff);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 10px;
-}
-
-.current-date-btn:hover {
-  background: linear-gradient(90deg, #3a5fef, #5a79ef);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(74, 111, 255, 0.4);
-}
-
-/* Calendar grid */
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.calendar-header {
-  text-align: center;
-  padding: 10px 0;
-  color: #a8c0ff;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(100, 120, 255, 0.2);
-  margin-bottom: 10px;
-}
-
-/* Calendar days */
-.day {
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: rgba(10, 15, 40, 0.5);
-  cursor: pointer;
-  transition: all 0.2s;
-  font-weight: 500;
-  position: relative;
-}
-
-.day:hover {
-  background: rgba(74, 111, 255, 0.2);
-}
-
-.day.selected {
-  background: linear-gradient(135deg, #4a6fff, #6a89ff);
-  color: white;
-  font-weight: 600;
-  box-shadow: 0 0 10px rgba(74, 111, 255, 0.5);
-}
-
-.day.other-month {
-  color: #666;
-  background: rgba(10, 15, 40, 0.2);
-}
-
-/* Moon phase indicators on calendar */
-.day.moon-phase-indicator::after {
-  content: "";
-  position: absolute;
-  bottom: 4px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #a8c0ff;
-}
-
-.day.new-moon::after {
-  background: #333;
-}
-
-.day.full-moon::after {
-  background: #f9f7fe;
-  box-shadow: 0 0 4px #f9f7fe;
-}
-
-/* Moon display container */
-.moon-container {
-  width: 300px;
-  height: 300px;
-  position: relative;
-  margin: 20px auto;
-}
-
-/* Moon element */
 .moon {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes your moon.jpeg circular */
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 40px rgba(168, 192, 255, 0.2);
-  background: radial-gradient(
-    circle at 30% 30%,
-    #f9f7fe 0%,
-    #d9d7fe 30%,
-    #a8c0ff 70%,
-    #6a89ff 100%
-  );
+  background-image: url('moon.jpeg');
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset -10px -10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(168,192,255,0.2);
 }
 
-/* Moon phase overlay */
 .moon-phase {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  background: #0a0e2a;
-  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #05071a; /* Matches background to hide moon parts */
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
 }
 
-/* Moon details */
-.moon-details {
-  text-align: center;
-  margin-top: 30px;
-  width: 100%;
-}
+/* Phase Shapes */
+.phase-new { width: 100%; left: 0; border-radius: 0; }
+.phase-waxing-crescent { width: 75%; left: 0; border-radius: 0 50% 50% 0; }
+.phase-first-quarter { width: 50%; left: 0; border-radius: 0; }
+.phase-waxing-gibbous { width: 25%; left: 0; border-radius: 0; }
+.phase-full { width: 0%; left: 0; opacity: 0; }
+.phase-waning-gibbous { width: 25%; left: 75%; border-radius: 0; }
+.phase-last-quarter { width: 50%; left: 50%; border-radius: 0; }
+.phase-waning-crescent { width: 75%; left: 25%; border-radius: 50% 0 0 50%; }
 
-.moon-title {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #f9f7fe;
-}
+/* --- OTHER UI --- */
+.date-selector { display: flex; gap: 10px; margin-bottom: 20px; }
+select { background: #1a1f3a; color: white; border: 1px solid #4a6fff; padding: 10px; border-radius: 8px; width: 100%; }
+.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 20px; }
+.day { padding: 10px; text-align: center; cursor: pointer; border-radius: 5px; background: rgba(255,255,255,0.1); }
+.day.selected { background: #4a6fff; }
+.current-date-btn { width: 100%; padding: 12px; background: #4a6fff; color: white; border: none; border-radius: 8px; cursor: pointer; }
 
-.moon-date {
-  font-size: 1.2rem;
-  color: #a8c0ff;
-  margin-bottom: 15px;
-}
-
-.moon-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #d0d5ff;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.moon-illumination {
-  margin-top: 15px;
-  font-size: 1.1rem;
-  color: #b0b5ff;
-}
-
-.moon-illumination span {
-  color: #f9f7fe;
-  font-weight: 600;
-}
-
-/* Phase indicators */
-.phase-indicators {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.phase-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-width: 80px;
-}
-
-.phase-moon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #0a0e2a;
-  margin-bottom: 8px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 8px rgba(168, 192, 255, 0.3);
-}
-
-.phase-name {
-  font-size: 0.9rem;
-  text-align: center;
-  color: #a8c0ff;
-}
-
-.phase-indicator.active .phase-name {
-  color: #f9f7fe;
-  font-weight: 600;
-}
-
-.phase-indicator.active .phase-moon {
-  box-shadow: 0 0 12px rgba(168, 192, 255, 0.6);
-}
-
-/* Footer */
-footer {
-  margin-top: 40px;
-  text-align: center;
-  color: #888;
-  font-size: 0.9rem;
-  padding: 20px;
-  border-top: 1px solid rgba(100, 120, 255, 0.1);
-  width: 100%;
-}
-
-/* Eclipse effect styling */
-.eclipse-effect .moon-phase {
-  background: #000;
-  animation: eclipse 10s infinite alternate;
-}
-
-@keyframes eclipse {
-  0% {
-    transform: translateX(-100%);
-  }
-  50% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-  }
-
-  .moon-container {
-    width: 250px;
-    height: 250px;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  .phase-indicators {
-    justify-content: center;
-  }
-
-  .phase-indicator {
-    min-width: 70px;
-  }
-}
-
-/* Additional responsive adjustments */
-@media (max-width: 480px) {
-  .container {
-    padding: 10px;
-  }
-
-  .calendar-section,
-  .moon-display-section {
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .date-selector {
-    flex-direction: column;
-  }
-
-  .date-group {
-    min-width: 100%;
-  }
-
-  .moon-container {
-    width: 200px;
-    height: 200px;
-  }
-}
+/* Indicator moons below main moon */
+.phase-indicators { display: flex; justify-content: space-around; margin-top: 20px; }
+.phase-moon-small { width: 30px; height: 30px; border-radius: 50%; background: #4a6fff; }
